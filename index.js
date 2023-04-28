@@ -13,25 +13,76 @@ const keyboard = document.createElement("div");
 keyboard.classList.add("keyboard");
 
 const rows = [
-  ["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "delete"],
-  ["tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\"],
   [
-    "caps lock",
-    "a",
-    "s",
-    "d",
-    "f",
-    "g",
-    "h",
-    "j",
-    "k",
-    "l",
-    ";",
-    "'",
-    "return",
+    { value: ["`", "~"], size: null },
+    { value: ["1", "!"], size: null },
+    { value: ["2", "@"], size: null },
+    { value: ["3", "#"], size: null },
+    { value: ["4", "$"], size: null },
+    { value: ["5", "%"], size: null },
+    { value: ["6", "^"], size: null },
+    { value: ["7", "&"], size: null },
+    { value: ["8", "*"], size: null },
+    { value: ["9", "("], size: null },
+    { value: ["0", ")"], size: null },
+    { value: ["-", "_"], size: null },
+    { value: ["=", "+"], size: null },
+    { value: ["delete"], size: "small", special: true },
   ],
-  ["shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "shift"],
-  ["fn", "control", "option", "command", "space", "command", "option"],
+  [
+    { value: ["tab"], size: "small", special: true },
+    { value: ["q"], size: null },
+    { value: ["w"], size: null },
+    { value: ["e"], size: null },
+    { value: ["r"], size: null },
+    { value: ["t"], size: null },
+    { value: ["y"], size: null },
+    { value: ["u"], size: null },
+    { value: ["i"], size: null },
+    { value: ["o"], size: null },
+    { value: ["p"], size: null },
+    { value: ["[", "{"], size: null },
+    { value: ["]", "}"], size: null },
+    { value: ["\\", "|"], size: null },
+  ],
+  [
+    { value: ["caps lock"], size: "medium", special: true },
+    { value: ["a"], size: null },
+    { value: ["s"], size: null },
+    { value: ["d"], size: null },
+    { value: ["f"], size: null },
+    { value: ["g"], size: null },
+    { value: ["h"], size: null },
+    { value: ["j"], size: null },
+    { value: ["k"], size: null },
+    { value: ["l"], size: null },
+    { value: [";", ":"], size: null },
+    { value: ["'", '"'], size: null },
+    { value: ["return"], size: "medium", special: true },
+  ],
+  [
+    { value: ["shift"], size: "big", special: true },
+    { value: ["z"], size: null },
+    { value: ["x"], size: null },
+    { value: ["c"], size: null },
+    { value: ["v"], size: null },
+    { value: ["b"], size: null },
+    { value: ["n"], size: null },
+    { value: ["m"], size: null },
+    { value: [",", "<"], size: null },
+    { value: [".", ">"], size: null },
+    { value: ["/", "?"], size: null },
+    { value: ["shift"], size: "big", special: true },
+  ],
+  [
+    { value: ["fn"], size: null, special: true },
+    { value: ["control"], size: null, special: true },
+    { value: ["option"], size: null, special: true },
+    { value: ["command"], size: "extra-small", special: true },
+    { value: ["space"], size: "extra-big", special: true },
+    { value: ["command"], size: "extra-small", special: true },
+    { value: ["option"], size: null, special: true },
+  ],
 ];
 
 for (let i = 0; i < rows.length; i++) {
@@ -40,22 +91,13 @@ for (let i = 0; i < rows.length; i++) {
   for (let j = 0; j < rows[i].length; j++) {
     const key = document.createElement("button");
     key.classList.add("keyboard__key");
-    key.innerHTML = rows[i][j];
-    if (
-      rows[i][j] === "delete" ||
-      rows[i][j] === "tab" ||
-      rows[i][j] === "caps lock" ||
-      rows[i][j] === "return" ||
-      rows[i][j] === "shift" ||
-      rows[i][j] === "fn" ||
-      rows[i][j] === "control" ||
-      rows[i][j] === "option" ||
-      rows[i][j] === "command" ||
-      rows[i][j] === "space"
-    ) {
-      key.classList.add(`keyboard__key--${rows[i][j].replace(" ", "-")}`);
-    }
+    key.innerHTML = rows[i][j].value[0];
+    if (rows[i][j].size !== null)
+      key.classList.add(`keyboard__key--${rows[i][j].size}`);
     row.appendChild(key);
+    if (rows[i][j].special) {
+      key.classList.add("keyboard__key--special");
+    }
   }
   keyboard.appendChild(row);
 }
