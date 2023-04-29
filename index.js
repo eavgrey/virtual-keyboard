@@ -91,6 +91,13 @@ rows.forEach((row) => {
     const keyElem = document.createElement('button');
     keyElem.classList.add('keyboard__key');
     [keyElem.innerHTML] = key.value;
+    if (key.value.length > 1) {
+      const secKeyValue = document.createElement('span');
+      secKeyValue.classList.add('keyboard__key--second-value');
+      const [keyValue] = key.value[1];
+      secKeyValue.innerHTML = keyValue;
+      keyElem.appendChild(secKeyValue);
+    }
     if (key.size !== null) {
       keyElem.classList.add(`keyboard__key--${key.size}`);
     }

@@ -17,7 +17,7 @@ $secondary: #ffffff;
     height: 60px;
   }
 
-  &__sub-row{
+  &__sub-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     row-gap: 1px;
@@ -25,7 +25,7 @@ $secondary: #ffffff;
 
   &__key {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     height: 40px;
     width: 40px;
@@ -36,10 +36,15 @@ $secondary: #ffffff;
     background-color: $primary;
     cursor: pointer;
     user-select: none;
-    border: 1px solid lighten($primary, 20%);;
+    border: 1px solid lighten($primary, 20%);
+    flex-direction: column-reverse;
 
     &:hover {
       background-color: lighten($primary, 10%);
+    }
+
+    &--second-value {
+      font-size: 14px;
     }
 
     &--special {
@@ -68,20 +73,20 @@ $secondary: #ffffff;
   }
 }
 
-.sub-row__key{
+.sub-row__key {
   height: 20px;
 
-  &--first{
+  &--first {
     grid-column: 2/5;
   }
 }
 
-.text-display{
+.text-display {
   width: fit-content;
   margin: 0 auto;
   margin-bottom: 20px;
 
-  &__area{
+  &__area {
     width: 760px;
     max-width: 760px;
     min-height: 300px;
