@@ -1,5 +1,7 @@
 import { rows, subRowKeys } from './keys.js';
-import { keyboard, subRow } from './index.js';
+import {
+  keyboard, subRow, keys, textArea,
+} from './index.js';
 
 function highlightElement(element) {
   element.classList.add('keyboard__key--active');
@@ -44,4 +46,16 @@ document.addEventListener('keydown', (event) => {
 
 document.addEventListener('keyup', (event) => {
   handleKeyboardEvent(event, false);
+});
+
+keys.forEach((key) => {
+  key.addEventListener('click', (e) => {
+    const clickedKey = e.target;
+    const value = clickedKey.childNodes[0].nodeValue;
+    if (clickedKey.classList.contains('keyboard__key--special')) {
+      /// /run function with special specialFunctionality()
+    } else {
+      textArea.value += value;
+    }
+  });
 });

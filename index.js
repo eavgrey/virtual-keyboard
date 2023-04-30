@@ -55,4 +55,9 @@ const lastRow = keyboard.lastChild;
 lastRow.appendChild(subRow);
 
 body.appendChild(keyboard);
-export { subRow, keyboard };
+
+const keys = document.querySelectorAll('.keyboard__key');
+
+export {
+  subRow, keyboard, keys, textArea,
+};
