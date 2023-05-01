@@ -89,7 +89,6 @@ function handleSpecialFunctionality(funcKey) {
       output.arrowRight();
       break;
     default:
-      console.warn('Unknown functionality key');
   }
 }
 
