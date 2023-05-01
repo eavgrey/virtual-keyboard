@@ -21,8 +21,8 @@ const rows = [
     {
       value: ['tab'], size: 'small', special: true, code: 'Tab',
     },
-    { value: ['q'], size: null },
-    { value: ['w'], size: null },
+    { value: 'q', size: null, type: 'letter' },
+    { value: 'w', size: null, type: 'letter' },
     { value: ['e'], size: null },
     { value: ['r'], size: null },
     { value: ['t'], size: null },

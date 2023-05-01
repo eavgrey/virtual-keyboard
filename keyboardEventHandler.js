@@ -20,8 +20,8 @@ function highlightOnClick(element) {
 }
 
 function disHighlightOnClick(element) {
-    element.classList.remove('keyboard__key--active');
-  }
+  element.classList.remove('keyboard__key--active');
+}
 
 function handleKeyboardEvent(event, isActive) {
   const keyPressed = event.key;
@@ -67,9 +67,6 @@ function handleSpecialFunctionality(funcKey) {
       break;
     case 'tab':
       output.tab();
-      break;
-    case 'caps lock':
-      console.log('caps');
       break;
     case 'return':
       output.enter();

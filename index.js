@@ -14,29 +14,33 @@ body.appendChild(textDisplay);
 const keyboard = document.createElement('div');
 keyboard.classList.add('keyboard');
 
-rows.forEach((row) => {
-  const elem = document.createElement('div');
-  elem.classList.add('keyboard__row');
-  row.forEach((key) => {
-    const keyElem = document.createElement('button');
-    keyElem.classList.add('keyboard__key');
-    [keyElem.innerHTML] = key.value;
-    if (key.shiftValue) {
-      const secKeyValue = document.createElement('span');
-      secKeyValue.classList.add('keyboard__key--second-value');
-      [secKeyValue.innerHTML] = key.shiftValue;
-      keyElem.appendChild(secKeyValue);
-    }
-    if (key.size !== null) {
-      keyElem.classList.add(`keyboard__key--${key.size}`);
-    }
-    elem.appendChild(keyElem);
-    if (key.special) {
-      keyElem.classList.add('keyboard__key--special');
-    }
+function buildKeyboard() {
+  rows.forEach((row) => {
+    const elem = document.createElement('div');
+    elem.classList.add('keyboard__row');
+    row.forEach((key) => {
+      const keyElem = document.createElement('button');
+      keyElem.classList.add('keyboard__key');
+      keyElem.innerHTML = key.value;
+      if (key.shiftValue) {
+        const secKeyValue = document.createElement('span');
+        secKeyValue.classList.add('keyboard__key--second-value');
+        [secKeyValue.innerHTML] = key.shiftValue;
+        keyElem.appendChild(secKeyValue);
+      }
+      if (key.size !== null) {
+        keyElem.classList.add(`keyboard__key--${key.size}`);
+      }
+      elem.appendChild(keyElem);
+      if (key.special) {
+        keyElem.classList.add('keyboard__key--special');
+      }
+    });
+    keyboard.appendChild(elem);
   });
-  keyboard.appendChild(elem);
-});
+}
+
+buildKeyboard();
 
 const subRow = document.createElement('div');
 subRow.classList.add('keyboard__sub-row');
