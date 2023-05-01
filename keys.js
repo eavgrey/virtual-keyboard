@@ -110,10 +110,10 @@ const rows = [
   ],
 ];
 const subRowKeys = [
-  { value: '<i class="fa-solid fa-caret-up"></i>', code: 'ArrowUp' },
-  { value: '<i class="fa-solid fa-caret-left"></i>', code: 'ArrowLeft' },
-  { value: '<i class="fa-solid fa-caret-down"></i>', code: 'ArrowDown' },
-  { value: '<i class="fa-solid fa-caret-right"></i>', code: 'ArrowRight' },
+  { value: '↑', code: 'ArrowUp' },
+  { value: '←', code: 'ArrowLeft' },
+  { value: '↓', code: 'ArrowDown' },
+  { value: '→', code: 'ArrowRight' },
 ];
 
 export { subRowKeys, rows };

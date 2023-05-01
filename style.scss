@@ -40,7 +40,7 @@ $secondary: #ffffff;
     flex-direction: column-reverse;
 
     &:hover {
-      background-color: lighten($primary, 10%);
+      border-color: darken($primary, 10%);
     }
 
     &--second-value {

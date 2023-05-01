@@ -43,7 +43,7 @@ subRow.classList.add('keyboard__sub-row');
 
 subRowKeys.forEach((subKey) => {
   const subRowKey = document.createElement('button');
-  subRowKey.classList.add('keyboard__key', 'sub-row__key');
+  subRowKey.classList.add('keyboard__key', 'sub-row__key', 'keyboard__key--special');
   if (subKey.code === 'ArrowUp') {
     subRowKey.classList.add('sub-row__key--first');
   }

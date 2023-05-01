@@ -3,6 +3,10 @@ import {
   keyboard, subRow, keys, textArea,
 } from './index.js';
 
+import Functionality from './functionalityKeys.js';
+
+const output = new Functionality(textArea);
+
 function highlightElement(element) {
   element.classList.add('keyboard__key--active');
 }
@@ -10,6 +14,14 @@ function highlightElement(element) {
 function disHiglightElement(element) {
   element.classList.remove('keyboard__key--active');
 }
+
+function highlightOnClick(element) {
+  element.classList.add('keyboard__key--active');
+}
+
+function disHighlightOnClick(element) {
+    element.classList.remove('keyboard__key--active');
+  }
 
 function handleKeyboardEvent(event, isActive) {
   const keyPressed = event.key;
@@ -34,7 +46,7 @@ function handleKeyboardEvent(event, isActive) {
       if (isActive) {
         highlightElement(subRowKeyElement);
       } else {
-        disHiglightElement(highlightElement);
+        disHiglightElement(subRowKeyElement);
       }
     }
   });
@@ -48,14 +60,57 @@ document.addEventListener('keyup', (event) => {
   handleKeyboardEvent(event, false);
 });
 
+function handleSpecialFunctionality(funcKey) {
+  switch (funcKey.firstChild.data) {
+    case 'delete':
+      output.deleteSymbol();
+      break;
+    case 'tab':
+      output.tab();
+      break;
+    case 'caps lock':
+      console.log('caps');
+      break;
+    case 'return':
+      output.enter();
+      break;
+    case 'shift':
+      break;
+    case 'space':
+      output.space();
+      break;
+    case '↑':
+      output.arrowUp();
+      break;
+    case '←':
+      output.arrowLeft();
+      break;
+    case '↓':
+      output.arrowDown();
+      break;
+    case '→':
+      output.arrowRight();
+      break;
+    default:
+      console.warn('Unknown functionality key');
+  }
+}
+
+function handleKeyClick(e) {
+  const { childNodes: [node] } = e.target;
+  const value = node.nodeValue;
+  const clickedKey = e.target;
+  if (!clickedKey.classList.contains('keyboard__key--special')) {
+    textArea.value += value;
+  } else {
+    handleSpecialFunctionality(clickedKey);
+  }
+}
+
 keys.forEach((key) => {
-  key.addEventListener('click', (e) => {
-    const clickedKey = e.target;
-    const value = clickedKey.childNodes[0].nodeValue;
-    if (clickedKey.classList.contains('keyboard__key--special')) {
-      /// /run function with special specialFunctionality()
-    } else {
-      textArea.value += value;
-    }
-  });
+  window.addEventListener('keydown', () => { textArea.focus(); });
+  key.addEventListener('click', handleKeyClick);
+  key.addEventListener('click', () => { textArea.focus(); });
+  key.addEventListener('mousedown', () => highlightOnClick(key));
+  key.addEventListener('mouseup', () => disHighlightOnClick(key));
 });
